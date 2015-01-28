@@ -6,10 +6,31 @@ public class Match {
 	private Equipe eq2;
 	private int scoreEq1;
 	private int scoreEq2;
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public Equipe getEq1() {
+		return eq1;
 	}
+	public void setEq1(Equipe eq1) {
+		this.eq1 = eq1;
+	}
+	public Equipe getEq2() {
+		return eq2;
+	}
+	public void setEq2(Equipe eq2) {
+		this.eq2 = eq2;
+	}
+	public int getScoreEq1() {
+		return scoreEq1;
+	}
+	public void setScoreEq1(int scoreEq1) {
+		this.scoreEq1 = scoreEq1;
+	}
+	public int getScoreEq2() {
+		return scoreEq2;
+	}
+	public void setScoreEq2(int scoreEq2) {
+		this.scoreEq2 = scoreEq2;
+	}
+
+	
 
 }

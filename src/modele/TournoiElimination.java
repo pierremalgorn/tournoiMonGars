@@ -1,12 +1,10 @@
 package modele;
 
 public class TournoiElimination extends ATournoi {
-	
-	
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	public TournoiElimination(String nom, int tpsMatchEnS, int nbEquipes) {
+		super(nom, tpsMatchEnS, nbEquipes);
+		
+	}	
 
 }
