@@ -16,11 +16,10 @@ public abstract class ATournoi {
 		this.nom = nom;
 		this.tpsMatchEnS = tpsMatchEnM;
 		this.nbEquipes = nbEquipes;
-		//equipes = this.constructionEquipes();
+		equipes = this.constructionEquipes();
 	}
 	
 	
-	////////////////////////////EN COURS
 	private List<Equipe> constructionEquipes(){
 		Random random = new Random();
 		List<List<Joueur>> groupesJoueurs = new ArrayList<List<Joueur>>();
@@ -43,6 +42,7 @@ public abstract class ATournoi {
 		equipes.add(new Equipe("Girondins de Bordeaux", 11, "Willy Sagnol", groupesJoueurs.get(6)));
 		equipes.add(new Equipe("OGC Nice", 11, "Claude Puel", groupesJoueurs.get(7)));
 		
+		return equipes;
 	}
 
 	
