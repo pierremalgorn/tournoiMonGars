@@ -10,6 +10,7 @@ public abstract class ATournoi {
 	private int tpsMatchEnS;
 	private int nbEquipes;
 	private List<Equipe> equipes;
+	private List<Match> tour;
 	
 	public ATournoi(String nom, int tpsMatchEnM, int nbEquipes) {
 		super();
