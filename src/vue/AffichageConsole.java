@@ -17,10 +17,7 @@ public class AffichageConsole {
 	public AffichageConsole() {
 		Scanner sc;
 		int reponse;
-		System.out.println("Bonjour, je suis gentil.");
-		
-		tournoi = initialisationTournoi(); //Set les caractéristiques du tournoi
-		
+		System.out.println("Bonjour, je suis gentil.");		
 		
 		//Demande du mode de jeu
 		do {
@@ -28,11 +25,12 @@ public class AffichageConsole {
 			sc = new Scanner(System.in);
 			reponse = sc.nextInt();
 		} while (reponse < 1 || reponse > 2);
-		sc.close();
 		
 		if(reponse == 1) {
+			tournoi = initialisationTournoi(reponse); //Set les caractéristiques du tournoi
 			controleur = (ATournoiControleur) new TournoiEliminationControleur(tournoi);
 		} else if (reponse == 2) {
+			tournoi = initialisationTournoi(reponse); //Set les caractéristiques du tournoi
 			controleur = (ATournoiControleur) new TournoiPoulesControleur(tournoi);
 		}
 		
@@ -44,7 +42,7 @@ public class AffichageConsole {
 		
 	}
 
-	public ATournoi initialisationTournoi() {
+	public ATournoi initialisationTournoi(int typeTournoi) {
 		
 		Scanner sc = new Scanner(System.in);
 		clearScreen();
@@ -65,7 +63,12 @@ public class AffichageConsole {
 		
 		sc.close();
 		
-		return new TournoiElimination(nomTournoi, temps, nbEquipes);
+		if(typeTournoi == 1) {
+			return new TournoiElimination(nomTournoi, temps, nbEquipes);
+		}
+		else {
+			return new TournoiPoules(nomTournoi, temps, nbEquipes);
+		}
 		
 	}
 	

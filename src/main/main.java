@@ -1,7 +1,5 @@
 package main;
 
-import controleur.TournoiEliminationControleur;
-import controleur.TournoiPoulesControleur;
 import vue.AffichageConsole;
 import vue.AffichageGraphique;
 import vue.Salut;
