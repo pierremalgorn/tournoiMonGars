@@ -2,8 +2,8 @@ package modele;
 
 public class TournoiElimination extends ATournoi {
 
-	public TournoiElimination(String nom, int tpsMatchEnS, int nbEquipes) {
-		super(nom, tpsMatchEnS, nbEquipes);
+	public TournoiElimination(String nom, int tpsMatchEnM, int nbEquipes) {
+		super(nom, tpsMatchEnM, nbEquipes);
 		
 	}	
 

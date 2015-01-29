@@ -1,15 +1,15 @@
 package controleur;
 
+import modele.ATournoi;
 import modele.TournoiElimination;
 
-public class TournoiEliminationControleur {
+public class TournoiEliminationControleur extends ATournoiControleur {
 
-	TournoiElimination tournoi;
+	private TournoiElimination tournoi;
 
-	public TournoiEliminationControleur() {
-		
+	public TournoiEliminationControleur(ATournoi tournoi) {
+		super();
+		this.tournoi = (TournoiElimination)tournoi;
 	}
-	
-	
 	
 }

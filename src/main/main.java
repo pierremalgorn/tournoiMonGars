@@ -2,18 +2,23 @@ package main;
 
 import controleur.TournoiEliminationControleur;
 import controleur.TournoiPoulesControleur;
+import vue.AffichageConsole;
+import vue.AffichageGraphique;
 import vue.Salut;
 
 public class main {
+	
+	static AffichageConsole console;
+	static AffichageGraphique graphique;
 	
 	public static void main(String[] args) {
 		Salut salut = new Salut();
 		int reponse = salut.salut();
 			
 		if(reponse == 1) {
-			new TournoiEliminationControleur();
+			console = new AffichageConsole();
 		} else if (reponse == 2) {
-			new TournoiPoulesControleur();
+			graphique = new AffichageGraphique();
 		}
 
 	}
