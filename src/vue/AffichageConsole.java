@@ -15,25 +15,9 @@ public class AffichageConsole {
 	ATournoiControleur controleur;
 	
 	public AffichageConsole() {
-		Scanner sc;
-		int reponse;
-		System.out.println("Bonjour, je suis gentil.");		
+		System.out.println("Bonjour, je suis gentil.");	
 		
-		//Demande du mode de jeu
-		do {
-			System.out.println("\nChoisissez votre mode de jeu !\n\nTapez :\n 1. Pour un tournoi à élimination directe\n 2. Pour un tournoi à coqs\nFaites votre choix : ");
-			sc = new Scanner(System.in);
-			reponse = sc.nextInt();
-		} while (reponse < 1 || reponse > 2);
-		
-		if(reponse == 1) {
-			tournoi = initialisationTournoi(reponse); //Set les caractéristiques du tournoi
-			controleur = (ATournoiControleur) new TournoiEliminationControleur(tournoi);
-		} else if (reponse == 2) {
-			tournoi = initialisationTournoi(reponse); //Set les caractéristiques du tournoi
-			controleur = (ATournoiControleur) new TournoiPoulesControleur(tournoi);
-		}
-		
+		initialisationTournoi();
 		
 		
 		this.start();
@@ -43,10 +27,19 @@ public class AffichageConsole {
 		
 	}
 
-	public ATournoi initialisationTournoi(int typeTournoi) {
+	public void initialisationTournoi() {
 		
-		Scanner sc = new Scanner(System.in);
-		clearScreen();
+		Scanner sc;
+		int typeTournoi;
+		
+		//Demande du mode de jeu
+		do {
+			System.out.println("\nChoisissez votre mode de jeu !\n\nTapez :\n 1. Pour un tournoi à élimination directe\n 2. Pour un tournoi à coqs\nFaites votre choix : ");
+			sc = new Scanner(System.in);
+			typeTournoi = sc.nextInt();
+		} while (typeTournoi < 1 || typeTournoi > 2);
+		
+		sc = new Scanner(System.in);
 		System.out.println("Tapez le nom du tournoi : ");
 		String nomTournoi = sc.nextLine();
 		
@@ -65,10 +58,12 @@ public class AffichageConsole {
 		sc.close();
 		
 		if(typeTournoi == 1) {
-			return new TournoiElimination(nomTournoi, temps, nbEquipes);
+			tournoi = new TournoiElimination(nomTournoi, temps, nbEquipes);
+			controleur = (ATournoiControleur) new TournoiEliminationControleur(tournoi);
 		}
 		else {
-			return new TournoiPoules(nomTournoi, temps, nbEquipes);
+			tournoi = new TournoiPoules(nomTournoi, temps, nbEquipes);
+			controleur = (ATournoiControleur) new TournoiPoulesControleur(tournoi);
 		}
 		
 	}
