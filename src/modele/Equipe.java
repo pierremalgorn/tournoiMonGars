@@ -17,6 +17,7 @@ public class Equipe {
 		this.nbJoueurs = nbJoueurs;
 		this.nomEntraineur = nomEntraineur;
 		this.joueurs = joueurs;
+		this.elimine = false;
 	}
 	
 	//Getters and setters
@@ -46,6 +47,15 @@ public class Equipe {
 	public void setJoueurs(List<Joueur> joueurs) {
 		this.joueurs = joueurs;
 	}
+
+	public boolean isElimine() {
+		return elimine;
+	}
+
+	public void setElimine(boolean elimine) {
+		this.elimine = elimine;
+	}
+	
 	
 	public boolean isElimine() {
 		return elimine;
