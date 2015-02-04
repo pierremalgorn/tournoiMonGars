@@ -12,7 +12,7 @@ public class Match {
 		this.eq1 = eq1;
 		this.eq2 = eq2;
 	}
-	
+	prout
 	public Equipe getEq1() {
 		return eq1;
 	}
@@ -36,6 +36,12 @@ public class Match {
 	}
 	public void setScoreEq2(int scoreEq2) {
 		this.scoreEq2 = scoreEq2;
+	}
+	public String getNomEq1(){
+		return eq1.getNom();		
+	}
+	public String getNomEq2(){
+		return eq2.getNom();
 	}
 
 	

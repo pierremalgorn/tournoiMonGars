@@ -94,6 +94,14 @@ public class AffichageConsole {
 		
 	}
 	
+	public void afficherTour() {
+		List<Match> tour = tournoi.getTour();
+		System.out.println("Voici les équipes qui vont s'affronter au prochain tour :\n");
+		for(Match match : tour) {
+			System.out.println(match.getNomEq1()+" vs "+match.getNomEq2()+"      ");
+		}
+	}
+	
 	public void clearScreen() {
 		System.out.println("\f");
 	}
