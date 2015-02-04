@@ -8,6 +8,7 @@ public class Equipe {
 	private int nbJoueurs;
 	private String nomEntraineur;
 	private List<Joueur> joueurs;
+	private boolean elimine;
 	
 	public Equipe(String nom, int nbJoueurs, String nomEntraineur, List<Joueur> joueurs) {
 		super();
@@ -15,6 +16,7 @@ public class Equipe {
 		this.nbJoueurs = nbJoueurs;
 		this.nomEntraineur = nomEntraineur;
 		this.joueurs = joueurs;
+		this.elimine = false;
 	}
 	
 	//Getters and setters
@@ -44,6 +46,15 @@ public class Equipe {
 	public void setJoueurs(List<Joueur> joueurs) {
 		this.joueurs = joueurs;
 	}
+
+	public boolean isElimine() {
+		return elimine;
+	}
+
+	public void setElimine(boolean elimine) {
+		this.elimine = elimine;
+	}
+	
 	
 
 	

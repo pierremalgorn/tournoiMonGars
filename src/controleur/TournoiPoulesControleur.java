@@ -1,6 +1,7 @@
 package controleur;
 
 import modele.ATournoi;
+import modele.Match;
 import modele.TournoiPoules;
 
 public class TournoiPoulesControleur extends ATournoiControleur {
@@ -10,6 +11,12 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 	public TournoiPoulesControleur(ATournoi tournoi) {
 		super();
 		this.tournoi = (TournoiPoules)tournoi;
+	}
+
+	@Override
+	public Match afficherTour() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

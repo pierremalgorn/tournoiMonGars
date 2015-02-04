@@ -6,6 +6,7 @@ public class Match {
 	private Equipe eq2;
 	private int scoreEq1;
 	private int scoreEq2;
+	
 	public Equipe getEq1() {
 		return eq1;
 	}

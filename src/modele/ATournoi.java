@@ -65,6 +65,17 @@ public abstract class ATournoi {
 	public void setNbEquipes(int nbEquipes) {
 		this.nbEquipes = nbEquipes;
 	}
+
+
+	public List<Match> getTour() {
+		return tour;
+	}
+
+
+	public void setTour(List<Match> tour) {
+		this.tour = tour;
+	}
 		
+	
 	
 }
