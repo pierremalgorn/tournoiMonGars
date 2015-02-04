@@ -55,6 +55,16 @@ public abstract class ATournoi {
 	public void setEquipes(List<Equipe> equipes) {
 		this.equipes = equipes;
 	}
+
+
+	public int getNbEquipes() {
+		return nbEquipes;
+	}
+
+
+	public void setNbEquipes(int nbEquipes) {
+		this.nbEquipes = nbEquipes;
+	}
 		
 	
 }

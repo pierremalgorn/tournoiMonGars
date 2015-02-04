@@ -13,9 +13,24 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		this.tournoi = (TournoiElimination)tournoi;
 	}
 	
-	public Match MatchParTour() {
+	/*public Match MatchParTour() {
 		Match match = new Match();
 		return match;
+	}*/
+	
+	public Match afficherTour(){
+	int nbEquipe = tournoi.getNbEquipes();
+	int nbTour = 1;
+	
+	nbTour = nbTour + 1;
+	nbEquipe = nbEquipe/2;
+	
+	 
+	
+	Match match = new Match();
+	
+	return match;
+
 	}
 	
 }
