@@ -1,8 +1,11 @@
 package vue;
 
+import java.util.List;
 import java.util.Scanner;
 
 import modele.ATournoi;
+import modele.Equipe;
+import modele.Match;
 import modele.TournoiElimination;
 import modele.TournoiPoules;
 import controleur.ATournoiControleur;
@@ -23,7 +26,12 @@ public class AffichageConsole {
 	}
 	
 	public void start() {
+		int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
+		int j;
 		
+		for(j = 0 ; j < tour ; j++){
+			controleur.creerTour();
+		}
 	}
 
 	public void initialisationTournoi() {
@@ -65,12 +73,24 @@ public class AffichageConsole {
 			controleur = new TournoiPoulesControleur(tournoi);
 		}
 		
-		controleur.afficherTour();
 		
 	}
 	
-	public void affichageTours(int nbTour){
-		System.out.println("Quels sont les résultats des matchs du tour "+ nbTour+" ?");
+	public void demandeScores(){
+		
+		int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
+		int nbEquipes = tournoi.getNbEquipes();
+		int i; 
+		int j;
+		for(j = 0 ; j < tour ; j++){
+			for(i = 0 ; i < nbEquipes/2 ; i++){
+				System.out.println("Quels est le résultat de ce tour ?");
+				Match match = controleur.CreerMatch();
+				
+				System.out.println(match.getEq1().getNom()+" - "+match.getEq2().getNom());
+			}
+		nbEquipes = nbEquipes/2;
+		}
 		
 	}
 	
