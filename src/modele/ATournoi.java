@@ -77,5 +77,4 @@ public abstract class ATournoi {
 		this.tour = tour;
 	}
 	
-	
 }

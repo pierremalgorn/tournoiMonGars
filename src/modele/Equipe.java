@@ -56,14 +56,4 @@ public class Equipe {
 		this.elimine = elimine;
 	}
 	
-	
-	public boolean isElimine() {
-		return elimine;
-	}
-
-	public void setElimine(boolean elimine) {
-		this.elimine = elimine;
-	}
-	
-
 }
