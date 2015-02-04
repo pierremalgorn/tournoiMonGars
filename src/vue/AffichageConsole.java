@@ -65,6 +65,13 @@ public class AffichageConsole {
 			controleur = new TournoiPoulesControleur(tournoi);
 		}
 		
+		controleur.afficherTour();
+		
+	}
+	
+	public void affichageTours(int nbTour){
+		System.out.println("Quels sont les résultats des matchs du tour "+ nbTour+" ?");
+		
 	}
 	
 	public void clearScreen() {
