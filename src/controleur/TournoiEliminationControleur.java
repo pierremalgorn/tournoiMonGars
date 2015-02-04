@@ -3,7 +3,6 @@ package controleur;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 import modele.ATournoi;
 import modele.Equipe;
 import modele.Match;
@@ -22,7 +21,7 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		Match match = new Match();
 		return match;
 	}*/
-	public List<Match> creerTour(){
+	public void creerTour(){
 				
 		int aleatoire;
 		int aleatoire2;
@@ -40,11 +39,11 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		}
 
 		while(equipesEnJeu.size() > 0){
-			aleatoire = random.nextInt(equipesEnJeu.size() + 1);
+			aleatoire = random.nextInt(equipesEnJeu.size());
 			Equipe equipe1 = equipesEnJeu.get(aleatoire);
 			equipesEnJeu.remove(aleatoire);
 			
-			aleatoire2 = random.nextInt(equipesEnJeu.size() + 1);
+			aleatoire2 = random.nextInt(equipesEnJeu.size());
 			Equipe equipe2 = equipesEnJeu.get(aleatoire2);
 			equipesEnJeu.remove(aleatoire2);
 			

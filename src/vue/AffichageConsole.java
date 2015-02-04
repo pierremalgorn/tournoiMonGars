@@ -31,6 +31,7 @@ public class AffichageConsole {
 		
 		for(j = 0 ; j < tour ; j++){
 			controleur.creerTour();
+			demandeScores();
 		}
 	}
 
@@ -72,7 +73,7 @@ public class AffichageConsole {
 			tournoi = new TournoiPoules(nomTournoi, temps, nbEquipes);
 			controleur = new TournoiPoulesControleur(tournoi);
 		}
-		
+	sc.close();
 		
 	}
 	
@@ -89,7 +90,7 @@ public class AffichageConsole {
 			System.out.println(match.getEq2().getNom()+" : ");
 			score2 = sc.nextInt();
 			
-			tournoi.setScore(match, score1, score2);
+			controleur.setScore(match, score1, score2);
 		}
 		
 	}
