@@ -25,11 +25,12 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		Match match = new Match();
 		return match;
 	}*/
-	public void creerTour(){
+	public List<Match> creerTour(){
 				
 		int aleatoire;
 		int aleatoire2;
 		Random random = new Random();
+		
 		List<Match> tour = new ArrayList<Match>();
 		
 		List<Equipe> equipes = tournoi.getEquipes();
@@ -56,6 +57,7 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		}
 		
 		tournoi.setTour(tour);
+		
 	}
 	
 }

@@ -1,10 +1,12 @@
 package controleur;
 
+import java.util.List;
+
 import modele.Match;
 
 public abstract class ATournoiControleur {
 
-	public abstract void creerTour();
+	public abstract List<Match> creerTour();
 
 
 }

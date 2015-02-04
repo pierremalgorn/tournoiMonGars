@@ -1,5 +1,6 @@
 package main;
 
+import Graphique.SwingView;
 import vue.AffichageConsole;
 import vue.AffichageGraphique;
 import vue.Salut;
@@ -7,7 +8,6 @@ import vue.Salut;
 public class main {
 	
 	static AffichageConsole console;
-	static AffichageGraphique graphique;
 	
 	public static void main(String[] args) {
 		Salut salut = new Salut();
@@ -16,7 +16,7 @@ public class main {
 		if(reponse == 1) {
 			console = new AffichageConsole();
 		} else if (reponse == 2) {
-			graphique = new AffichageGraphique();
+			SwingView graphique = new SwingView();
 		}
 
 	}

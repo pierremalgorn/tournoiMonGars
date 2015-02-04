@@ -78,18 +78,18 @@ public class AffichageConsole {
 	
 	public void demandeScores(){
 		
-		int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
-		int nbEquipes = tournoi.getNbEquipes();
-		int i; 
-		int j;
-		for(j = 0 ; j < tour ; j++){
-			for(i = 0 ; i < nbEquipes/2 ; i++){
-				System.out.println("Quels est le résultat de ce tour ?");
-				Match match = controleur.CreerMatch();
-				
-				System.out.println(match.getEq1().getNom()+" - "+match.getEq2().getNom());
-			}
-		nbEquipes = nbEquipes/2;
+		List<Match> tour = tournoi.getTour();
+		Scanner sc = new Scanner(System.in);
+		int score1, score2;
+		
+		for(Match match : tour){
+			System.out.println("Quels est le résultat du match "+match.getEq1().getNom()+" - "+match.getEq2().getNom()+" ?");
+			System.out.println(match.getEq1().getNom()+" : ");
+			score1 = sc.nextInt();			
+			System.out.println(match.getEq2().getNom()+" : ");
+			score2 = sc.nextInt();
+			
+			tournoi.setScore(match, score1, score2);
 		}
 		
 	}
