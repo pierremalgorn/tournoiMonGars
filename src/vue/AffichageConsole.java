@@ -58,11 +58,11 @@ public class AffichageConsole {
 		
 		if(typeTournoi == 1) {
 			tournoi = new TournoiElimination(nomTournoi, temps, nbEquipes);
-			controleur = (ATournoiControleur) new TournoiEliminationControleur(tournoi);
+			controleur = new TournoiEliminationControleur(tournoi);
 		}
 		else {
 			tournoi = new TournoiPoules(nomTournoi, temps, nbEquipes);
-			controleur = (ATournoiControleur) new TournoiPoulesControleur(tournoi);
+			controleur = new TournoiPoulesControleur(tournoi);
 		}
 		
 	}
