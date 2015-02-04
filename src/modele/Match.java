@@ -7,6 +7,12 @@ public class Match {
 	private int scoreEq1;
 	private int scoreEq2;
 	
+	public Match(Equipe eq1, Equipe eq2) {
+		super();
+		this.eq1 = eq1;
+		this.eq2 = eq2;
+	}
+	
 	public Equipe getEq1() {
 		return eq1;
 	}

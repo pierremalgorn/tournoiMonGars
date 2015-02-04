@@ -10,6 +10,7 @@ public class Equipe {
 	private List<Joueur> joueurs;
 	private boolean elimine;
 	
+
 	public Equipe(String nom, int nbJoueurs, String nomEntraineur, List<Joueur> joueurs) {
 		super();
 		this.nom = nom;
@@ -56,7 +57,13 @@ public class Equipe {
 	}
 	
 	
+	public boolean isElimine() {
+		return elimine;
+	}
 
+	public void setElimine(boolean elimine) {
+		this.elimine = elimine;
+	}
 	
 
 }

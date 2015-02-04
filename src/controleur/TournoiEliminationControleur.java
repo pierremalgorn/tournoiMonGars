@@ -1,7 +1,9 @@
 package controleur;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
+import java.util.Scanner;
 import modele.ATournoi;
 import modele.Equipe;
 import modele.Match;
@@ -20,20 +22,37 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		Match match = new Match();
 		return match;
 	}*/
-	
-	public Match afficherTour(){
-	int nbEquipe = tournoi.getNbEquipes();
-	int nbTour = 1;
-	
-	nbTour = nbTour + 1;
-	nbEquipe = nbEquipe/2;
-	
-	 
-	
-	Match match = new Match();
-	
-	return match;
+	public void creerTour(){
+				
+		int aleatoire;
+		int aleatoire2;
+		Random random = new Random();
+		List<Match> tour = new ArrayList<Match>();
+		
+		List<Equipe> equipes = tournoi.getEquipes();
+		List<Equipe> equipesEnJeu = new ArrayList<Equipe>();
+		
+		for(Equipe equipe : equipes){
+			if (equipe.isElimine() == false){
+				equipesEnJeu.add(equipe);
+			}
+		}
 
+		while(equipesEnJeu.size() > 0){
+			aleatoire = random.nextInt(equipesEnJeu.size() + 1);
+			Equipe equipe1 = equipesEnJeu.get(aleatoire);
+			equipesEnJeu.remove(aleatoire);
+			
+			aleatoire2 = random.nextInt(equipesEnJeu.size() + 1);
+			Equipe equipe2 = equipesEnJeu.get(aleatoire2);
+			equipesEnJeu.remove(aleatoire2);
+			
+			tour.add(new Match(equipe1, equipe2));
+			
+			
+		}
+		
+		tournoi.setTour(tour);
 	}
 	
 	public void setScore(Match match, int scoreEq1, int scoreEq2) {		

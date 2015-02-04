@@ -7,7 +7,7 @@ import java.util.Random;
 public abstract class ATournoi {
 
 	private String nom;
-	private int tpsMatchEnS;
+	private int tpsMatchEnM;
 	private int nbEquipes;
 	private List<Equipe> equipes;
 	private List<Match> tour;
@@ -15,7 +15,7 @@ public abstract class ATournoi {
 	public ATournoi(String nom, int tpsMatchEnM, int nbEquipes) {
 		super();
 		this.nom = nom;
-		this.tpsMatchEnS = tpsMatchEnM;
+		this.tpsMatchEnM = tpsMatchEnM;
 		this.nbEquipes = nbEquipes;
 		equipes = this.constructionEquipes();
 	}
@@ -44,6 +44,7 @@ public abstract class ATournoi {
 		equipes.add(new Equipe("OGC Nice", 11, "Claude Puel", groupesJoueurs.get(7)));
 		
 		return equipes;
+		
 	}
 
 	
@@ -75,7 +76,6 @@ public abstract class ATournoi {
 	public void setTour(List<Match> tour) {
 		this.tour = tour;
 	}
-		
 	
 	
 }
