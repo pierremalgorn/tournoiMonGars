@@ -6,11 +6,16 @@ public class TournoiPoules extends ATournoi {
 
 	private List<Poule> listePoules;
 	
-	public TournoiPoules(String nom, int tpsMatchEnM, int nbEquipes,
-			List<Poule> listePoules) {
-		super(nom, tpsMatchEnM, nbEquipes);
+
+	public List<Poule> getListePoules() {
+		return listePoules;
+	}
+
+
+	public void setListePoules(List<Poule> listePoules) {
 		this.listePoules = listePoules;
 	}
+
 
 	public TournoiPoules(String nom, int tpsMatchEnS, int nbEquipes) {
 		super(nom, tpsMatchEnS, nbEquipes);
