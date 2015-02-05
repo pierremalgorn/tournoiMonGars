@@ -23,6 +23,8 @@ public abstract class ATournoi {
 	
 	private List<Equipe> constructionEquipes(){
 		Random random = new Random();
+		int aleatoire;
+		
 		List<List<Joueur>> groupesJoueurs = new ArrayList<List<Joueur>>();
 		
 		for(int i=0 ; i<8 ; i++) { //Boucle de création d'équipes
@@ -42,6 +44,12 @@ public abstract class ATournoi {
 		equipes.add(new Equipe("Montpellier SC", 11, "Rolland Courbis", groupesJoueurs.get(5)));
 		equipes.add(new Equipe("Girondins de Bordeaux", 11, "Willy Sagnol", groupesJoueurs.get(6)));
 		equipes.add(new Equipe("OGC Nice", 11, "Claude Puel", groupesJoueurs.get(7)));
+		
+		//Boucle de suppression des equipes en fonction du choix de l'utilisateur (nombre d'équipes)
+		for(int i = 0 ; i < (8 - nbEquipes) ; i++){
+			aleatoire = random.nextInt(equipes.size());
+			equipes.remove(aleatoire);			
+		}
 		
 		return equipes;
 		

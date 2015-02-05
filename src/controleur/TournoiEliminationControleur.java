@@ -47,8 +47,7 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 			Equipe equipe2 = equipesEnJeu.get(aleatoire2);
 			equipesEnJeu.remove(aleatoire2);
 			
-			tour.add(new Match(equipe1, equipe2));
-			
+			tour.add(new Match(equipe1, equipe2));	
 			
 		}
 		
@@ -61,10 +60,10 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		match.setScoreEq2(scoreEq2);
 		
 		if(scoreEq1 > scoreEq2) {
-			match.getEq1().setElimine(true);
+			match.getEq2().setElimine(true);
 		}
 		else {
-			match.getEq2().setElimine(true);
+			match.getEq1().setElimine(true);
 		}
 		
 	}

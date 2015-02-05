@@ -14,9 +14,15 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 	}
 
 	@Override
-	public Match afficherTour() {
+	public void creerTour() {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+	@Override
+	public void setScore(Match match, int score1, int score2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

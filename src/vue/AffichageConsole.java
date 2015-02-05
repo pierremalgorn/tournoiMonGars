@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import modele.ATournoi;
-import modele.Equipe;
 import modele.Match;
 import modele.TournoiElimination;
 import modele.TournoiPoules;
@@ -16,6 +15,7 @@ public class AffichageConsole {
 	
 	ATournoi tournoi;
 	ATournoiControleur controleur;
+	Scanner sc;
 	
 	public AffichageConsole() {
 		System.out.println("Bonjour, je suis gentil.");	
@@ -31,25 +31,24 @@ public class AffichageConsole {
 		
 		for(j = 0 ; j < tour ; j++){
 			controleur.creerTour();
+			afficherTour();
 			demandeScores();
 		}
 	}
 
 	public void initialisationTournoi() {
 		
-		Scanner sc;
+		sc = new Scanner(System.in);
 		int typeTournoi;
 		
 		//Demande du mode de jeu
 		do {
 			System.out.println("\nChoisissez votre mode de jeu !\n\nTapez :\n 1. Pour un tournoi à élimination directe\n 2. Pour un tournoi à coqs\nFaites votre choix : ");
-			sc = new Scanner(System.in);
 			typeTournoi = sc.nextInt();
 		} while (typeTournoi < 1 || typeTournoi > 2);
 		
-		sc = new Scanner(System.in);
 		System.out.println("Tapez le nom du tournoi : ");
-		String nomTournoi = sc.nextLine();
+		String nomTournoi = sc.next();
 		
 		int temps;
 		do {
@@ -63,7 +62,7 @@ public class AffichageConsole {
 			nbEquipes = sc.nextInt();
 		} while (nbEquipes < 1 || nbEquipes > 120 || (nbEquipes % 2) != 0);
 		
-		sc.close();
+
 		
 		if(typeTournoi == 1) {
 			tournoi = new TournoiElimination(nomTournoi, temps, nbEquipes);
@@ -73,14 +72,12 @@ public class AffichageConsole {
 			tournoi = new TournoiPoules(nomTournoi, temps, nbEquipes);
 			controleur = new TournoiPoulesControleur(tournoi);
 		}
-	sc.close();
 		
 	}
 	
 	public void demandeScores(){
 		
 		List<Match> tour = tournoi.getTour();
-		Scanner sc = new Scanner(System.in);
 		int score1, score2;
 		
 		for(Match match : tour){
