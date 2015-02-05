@@ -11,10 +11,10 @@ public class Equipe {
 	private boolean elimine;
 	
 
-	public Equipe(String nom, int nbJoueurs, String nomEntraineur, List<Joueur> joueurs) {
+	public Equipe(String nom, String nomEntraineur, List<Joueur> joueurs) {
 		super();
 		this.nom = nom;
-		this.nbJoueurs = nbJoueurs;
+		this.nbJoueurs = joueurs.size();
 		this.nomEntraineur = nomEntraineur;
 		this.joueurs = joueurs;
 		this.elimine = false;

@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.Random;
+
 public class Joueur {
 
 	private String nom;
@@ -9,6 +11,14 @@ public class Joueur {
 		super();
 		this.nom = nom;
 		this.age = age;
+	}
+	
+	//Age aléatoire
+	public Joueur(String nom) {
+		super();
+		Random random = new Random();
+		this.nom = nom;
+		this.age = random.nextInt(60 - 18 + 1) + 18;
 	}
 	
 	

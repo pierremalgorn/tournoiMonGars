@@ -43,6 +43,17 @@ public class Match {
 	public String getNomEq2(){
 		return eq2.getNom();
 	}
+	public Equipe getWinner() {
+		if(!eq1.isElimine()) {
+			return eq1;
+		}
+		else if (!eq2.isElimine()) {
+			return eq2;
+		}
+		else {
+			return null;
+		}
+	}
 
 	
 
