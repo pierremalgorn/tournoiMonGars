@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import modele.ATournoi;
 import modele.Equipe;
+import modele.Joueur;
 import modele.Match;
 import modele.TournoiElimination;
 import modele.TournoiPoules;
@@ -29,18 +30,52 @@ public class AffichageConsole {
 		
 	}
 	
-	public void modifierEquipes() {
+	public void afficherEquipes() {
 		System.out.println("Il y a actuellement "+tournoi.getNbEquipes()+" équipes dans le tournoi :");
 		List<Equipe> equipes = tournoi.getEquipes();
-		int numeroEquipe;
-		int nbJoueurs;
-		String choix;
 		
 		for (int i = 0 ; i < equipes.size() ; i++) {
 			System.out.println("Equipe "+(i+1)+" : "+equipes.get(i).getNom());
 			System.out.println("           "+equipes.get(i).getNbJoueurs()+ " joueurs");
 			System.out.println("           "+equipes.get(i).getNomEntraineur()+" est l'entraîneur de cette équipe");			
 		}
+	}
+	
+	public void afficherDetailsEquipe() {
+		int numeroEquipe;
+		afficherEquipes();
+		
+		do {
+			System.out.println("\nVeuillez choisir l'équipe que vous souhaitez voir en détails (Joueurs) : ");
+			numeroEquipe = getPosIntTyped();
+		} while (numeroEquipe == -1 );
+		
+		Equipe equipe = tournoi.getEquipes().get(numeroEquipe-1);
+		
+		System.out.println("Equipe : "+equipe.getNom());
+		System.out.println("           "+equipe.getNbJoueurs()+ " joueurs");
+		System.out.println("           "+equipe.getNomEntraineur()+" est l'entraîneur de cette équipe");
+		System.out.println("\nComposition de l'équipe :");
+		
+		List<Joueur> joueurs = equipe.getJoueurs();
+		
+		int index = 1;
+		for(Joueur joueur : joueurs) {
+			System.out.println("Joueur "+index+" : "+joueur.getNom()+", "+joueur.getAge()+" ans");
+			index++;
+		}
+		
+	}
+	
+	public void modifierEquipes() {
+		List<Equipe> equipes = tournoi.getEquipes();
+		int numeroEquipe;
+		int nbJoueurs;
+		int choix;
+		
+		//On affiche les différentes équipes
+		afficherEquipes();
+		
 		do {
 			System.out.println("\nVeuillez choisir l'équipe que vous souhaitez modifier : ");
 			numeroEquipe = getPosIntTyped();
@@ -59,12 +94,12 @@ public class AffichageConsole {
 		String nomEntraineur = getStringTyped();
 		
 		do {	
-			System.out.println("\nVoulez-vous modifier le noms des joueurs ? ");
-			choix = getStringTyped();
-		} while (!choix.equals("o") || !choix.equals("n"));
+			System.out.println("\nVoulez-vous modifier le noms des joueurs ? (1 pour oui, 0 pour non)");
+			choix = getPosIntTyped();
+		} while (choix  < 0 || choix > 1);
 		
 		switch (choix) {
-		case "o" : //Génération de joueurs avec noms définis par l'utilisateur
+		case 1 : //Génération de joueurs avec noms définis par l'utilisateur
 			List<String> nomsJoueurs = new ArrayList<String>();
 			System.out.println("Veuillez entrer le nom des joueurs :");
 			for (int i = 0 ; i < nbJoueurs ; i++) {
@@ -74,7 +109,7 @@ public class AffichageConsole {
 			controleur.modifierEquipe(equipes.get(numeroEquipe-1), nom, nomsJoueurs, nomEntraineur);
 			break;
 			
-		case "n" : //Génération de joueurs avec noms aléatoires
+		case 0 : //Génération de joueurs avec noms aléatoires
 			controleur.modifierEquipe(equipes.get(numeroEquipe-1), nom, nbJoueurs, nomEntraineur);
 			break;
 		}
@@ -98,7 +133,7 @@ public class AffichageConsole {
 	
 	public String getStringTyped() {
 		sc = new Scanner(System.in);
-		return sc.next();
+		return sc.nextLine();
 	}
 	
 	public void menuPrincipal() {
@@ -110,8 +145,9 @@ public class AffichageConsole {
 			System.out.println("\nBienvenue dans le menu principal, voici les options disponibles :");
 			System.out.println("   1. Modifier les paramètres du tournoi");
 			System.out.println("   2. Modifier les équipes");
-			System.out.println("   3. Lancer le tournoi");
-			System.out.println("   4. Quitter le jeu");
+			System.out.println("   3. Afficher les équipes et leurs joueurs");
+			System.out.println("   4. Lancer le tournoi");
+			System.out.println("   5. Quitter le jeu");
 			System.out.println("\n\nFaites votre choix : ");
 			choix = getPosIntTyped();
 		} while (choix  < 1 || choix > 4);
@@ -126,10 +162,14 @@ public class AffichageConsole {
 			break;
 			
 		case 3 :
-			start();
+			afficherDetailsEquipe();
 			break;
 			
 		case 4 :
+			start();
+			break;
+			
+		case 5 :
 			System.exit(0);
 		}
 		
