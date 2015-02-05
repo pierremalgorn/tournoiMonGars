@@ -11,11 +11,9 @@ import modele.Poule;
 import modele.TournoiPoules;
 
 public class TournoiPoulesControleur extends ATournoiControleur {
-
-	private TournoiPoules tournoi;
 	
 	public TournoiPoulesControleur(ATournoi tournoi) {
-		super();
+		super(tournoi);
 		this.tournoi = (TournoiPoules)tournoi;
 	}
 

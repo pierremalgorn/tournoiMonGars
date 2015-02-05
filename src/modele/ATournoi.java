@@ -17,38 +17,6 @@ public abstract class ATournoi {
 		this.nom = nom;
 		this.tpsMatchEnM = tpsMatchEnM;
 		this.nbEquipes = nbEquipes;
-		equipes = this.constructionEquipes();
-	}
-	
-	
-	private List<Equipe> constructionEquipes(){
-		int aleatoire;
-		
-		List<List<Joueur>> groupesJoueurs = new ArrayList<List<Joueur>>();
-		
-		for(int i=0 ; i<8 ; i++) { //Boucle de création d'équipes
-			
-			groupesJoueurs.add(joueurs);
-		}
-		
-		List<Equipe> equipes = new ArrayList<Equipe>();
-		equipes.add(new Equipe("OM", "Marcelo Bielsa", groupesJoueurs.get(0)));
-		equipes.add(new Equipe("OL", "Hubert Fournier", groupesJoueurs.get(1)));
-		equipes.add(new Equipe("PSG", "Laurent Blanc", groupesJoueurs.get(2)));
-		equipes.add(new Equipe("AS Monaco", "Leonardo Jardim", groupesJoueurs.get(3)));
-		equipes.add(new Equipe("AS Saint-Etienne", "Christophe Galtier", groupesJoueurs.get(4)));
-		equipes.add(new Equipe("Montpellier SC", "Rolland Courbis", groupesJoueurs.get(5)));
-		equipes.add(new Equipe("Girondins de Bordeaux", "Willy Sagnol", groupesJoueurs.get(6)));
-		equipes.add(new Equipe("OGC Nice", "Claude Puel", groupesJoueurs.get(7)));
-		
-		//Boucle de suppression des equipes en fonction du choix de l'utilisateur (nombre d'équipes)
-		for(int i = 0 ; i < (8 - nbEquipes) ; i++){
-			aleatoire = random.nextInt(equipes.size());
-			equipes.remove(aleatoire);			
-		}
-		
-		return equipes;
-		
 	}
 
 	

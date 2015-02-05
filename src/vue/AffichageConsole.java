@@ -1,5 +1,6 @@
 package vue;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,8 +32,9 @@ public class AffichageConsole {
 	public void modifierEquipes() {
 		System.out.println("Il y a actuellement "+tournoi.getNbEquipes()+" équipes dans le tournoi :");
 		List<Equipe> equipes = tournoi.getEquipes();
-		int choix;
+		int numeroEquipe;
 		int nbJoueurs;
+		String choix;
 		
 		for (int i = 0 ; i < equipes.size() ; i++) {
 			System.out.println("Equipe "+(i+1)+" : "+equipes.get(i).getNom());
@@ -41,10 +43,10 @@ public class AffichageConsole {
 		}
 		do {
 			System.out.println("\nVeuillez choisir l'équipe que vous souhaitez modifier : ");
-			choix = getPosIntTyped();
-		} while (choix == -1 );
+			numeroEquipe = getPosIntTyped();
+		} while (numeroEquipe == -1 );
 		
-		System.out.println("Vous modifiez l'équipe "+choix+", veuillez taper : ");
+		System.out.println("Vous modifiez l'équipe "+numeroEquipe+", veuillez taper : ");
 		System.out.println("   Le nom de l'équipe : ");
 		String nom = getStringTyped();
 		
@@ -56,7 +58,27 @@ public class AffichageConsole {
 		System.out.println("   Le nom de l'entraîneur : ");
 		String nomEntraineur = getStringTyped();
 		
-		controleur.modifierEquipe();
+		do {	
+			System.out.println("\nVoulez-vous modifier le noms des joueurs ? ");
+			choix = getStringTyped();
+		} while (!choix.equals("o") || !choix.equals("n"));
+		
+		switch (choix) {
+		case "o" : //Génération de joueurs avec noms définis par l'utilisateur
+			List<String> nomsJoueurs = new ArrayList<String>();
+			System.out.println("Veuillez entrer le nom des joueurs :");
+			for (int i = 0 ; i < nbJoueurs ; i++) {
+				System.out.println("Joueur "+(i+1)+" : ");
+				nomsJoueurs.add(getStringTyped());				
+			}
+			controleur.modifierEquipe(equipes.get(numeroEquipe-1), nom, nomsJoueurs, nomEntraineur);
+			break;
+			
+		case "n" : //Génération de joueurs avec noms aléatoires
+			controleur.modifierEquipe(equipes.get(numeroEquipe-1), nom, nbJoueurs, nomEntraineur);
+			break;
+		}
+		
 	}
 	
 	public void clearScreen() {
@@ -173,12 +195,12 @@ public class AffichageConsole {
 			do {
 				System.out.println(match.getEq1().getNom()+" : ");
 				score1 = getPosIntTyped();
-			} while (choix == -1 );
+			} while (score1 == -1 );
 			
 			do {
 				System.out.println(match.getEq2().getNom()+" : ");
 				score2 = getPosIntTyped();
-			} while (choix == -1 );
+			} while (score2 == -1 );
 			
 			controleur.setScore(match, score1, score2);
 		}

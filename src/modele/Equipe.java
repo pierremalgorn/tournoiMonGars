@@ -5,7 +5,6 @@ import java.util.List;
 public class Equipe {
 	
 	private String nom;
-	private int nbJoueurs;
 	private String nomEntraineur;
 	private List<Joueur> joueurs;
 	private boolean elimine;
@@ -14,7 +13,6 @@ public class Equipe {
 	public Equipe(String nom, String nomEntraineur, List<Joueur> joueurs) {
 		super();
 		this.nom = nom;
-		this.nbJoueurs = joueurs.size();
 		this.nomEntraineur = nomEntraineur;
 		this.joueurs = joueurs;
 		this.elimine = false;
@@ -28,10 +26,7 @@ public class Equipe {
 		this.nom = nom;
 	}
 	public int getNbJoueurs() {
-		return nbJoueurs;
-	}
-	public void setNbJoueurs(int nbJoueurs) {
-		this.nbJoueurs = nbJoueurs;
+		return joueurs.size();
 	}
 	public String getNomEntraineur() {
 		return nomEntraineur;
