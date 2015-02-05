@@ -12,7 +12,7 @@ public class Match {
 		this.eq1 = eq1;
 		this.eq2 = eq2;
 	}
-	
+
 	public Equipe getEq1() {
 		return eq1;
 	}
