@@ -16,6 +16,7 @@ public abstract class ATournoiControleur {
 	public ATournoiControleur(ATournoi tournoi) {
 		super();
 		this.tournoi = tournoi;
+		tournoi.setEquipes(constructionEquipes());
 	}
 	
 	public abstract void creerTour();
