@@ -26,7 +26,7 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		List<Equipe> equipes = tournoi.getEquipes();
 		List<Equipe> equipesEnJeu = new ArrayList<Equipe>();
 		
-		for(Equipe equipe : equipes){
+		for(Equipe 	equipe : equipes){
 			if (equipe.isElimine() == false){
 				equipesEnJeu.add(equipe);
 			}
@@ -47,6 +47,11 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		
 		tournoi.setTour(tour);
 		
+	}
+	
+	public int compterNombreTours(){
+		int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
+		return tour;
 	}
 	
 	public void setScore(Match match, int scoreEq1, int scoreEq2) {		

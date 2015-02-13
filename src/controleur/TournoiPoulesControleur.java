@@ -32,6 +32,11 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		
 	}
 	
+	public int compterNombreTours(){
+		int tour = (int) ((Math.log(tournoi.getNbEquipes()) / Math.log(2)) + 3);
+		return tour;
+	}
+	
 	public void creerPoules(){
 		int aleatoire;
 		int nbPoules = (tournoi.getNbEquipes())/4;

@@ -176,7 +176,8 @@ public class AffichageConsole {
 	}
 	
 	public void start() {
-		int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
+		
+		int tour = controleur.compterNombreTours();
 		int j;
 		
 		for(j = 0 ; j < tour ; j++){
