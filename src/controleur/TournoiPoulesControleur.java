@@ -57,7 +57,6 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 			poules.add(poule);
 		}
 		((TournoiPoules) tournoi).setListePoules(poules);
-		System.out.println("yooooooo");
 	}
 	
 	public void jouerMatch(){
@@ -69,11 +68,13 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		for(i=0 ; i<nbPoules; i++){
 			Equipe equipe1 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(0);
 			Equipe equipe2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(2);
+			Equipe equipe3 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(1);
+			Equipe equipe4 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(3);
 			
-			tour.add(new Match(equipe1, equipe2));	
+			tour.add(new Match(equipe1, equipe2));
+			tour.add(new Match(equipe3, equipe4));
+			tournoi.setTour(tour);
 		}
-		
-		System.out.println("yppppppp");
 		
 	}
 
