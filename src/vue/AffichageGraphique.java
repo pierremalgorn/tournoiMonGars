@@ -43,25 +43,7 @@ public class AffichageGraphique extends JFrame {
 	ATournoi tournoi;
 	ATournoiControleur controleur;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AffichageGraphique frame = new AffichageGraphique();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public AffichageGraphique() {
 		setTitle("Tournoi Mon Gars");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
