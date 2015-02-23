@@ -19,11 +19,12 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 
 	
 	@Override
-	public void creerTour() {
+	public int creerTour() {
 		
 		creerPoules();
 		jouerMatch();
 		
+		return 0; //1 : match terminé
 	}
 
 	@Override

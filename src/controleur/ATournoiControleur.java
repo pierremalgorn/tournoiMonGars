@@ -19,7 +19,7 @@ public abstract class ATournoiControleur {
 		tournoi.setEquipes(constructionEquipes());
 	}
 	
-	public abstract void creerTour();
+	public abstract int creerTour();
 	public abstract void setScore(Match match, int score1, int score2);
 	
 	private List<Equipe> constructionEquipes(){

@@ -50,12 +50,17 @@ public abstract class ATournoi {
 	}
 	
 	public String getWinnerName() {
-		Equipe winner = tour.get(0).getWinner();
-		if (winner != null ) {
-			return winner.getNom();
+		if(tour.size() == 1) {
+			Equipe winner = tour.get(0).getWinner();
+			if (winner != null ) {
+				return winner.getNom();
+			}
+			else {
+				return "Erreur";
+			}
 		}
 		else {
-			return "Erreur";
+			return "Le jeu n'est pas fini !";
 		}
 	}
 	

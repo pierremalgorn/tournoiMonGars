@@ -94,7 +94,7 @@ public class AffichageConsole {
 		String nomEntraineur = getStringTyped();
 		
 		do {	
-			System.out.println("\nVoulez-vous modifier le noms des joueurs ? (1 pour oui, 0 pour non)");
+			System.out.println("\nVoulez-vous modifier le nom des joueurs ? (1 pour oui, 0 pour non)");
 			choix = getPosIntTyped();
 		} while (choix  < 0 || choix > 1);
 		
@@ -175,12 +175,12 @@ public class AffichageConsole {
 		
 	}
 	
-	public void start() {
-		
+	public void start() {		
 		int tour = controleur.compterNombreTours();
 		int j;
+		int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
 		
-		for(j = 0 ; j < tour ; j++){
+		for(int j = 0 ; j < tour ; j++){
 			controleur.creerTour();
 			afficherTour();
 			demandeScores();
