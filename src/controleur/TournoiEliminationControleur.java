@@ -33,11 +33,11 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		}
 		
 		//S'il n'y a plus d'équipes en jeu, le tournoi est terminé
-		if(equipesEnJeu.isEmpty()) {
+		if(equipesEnJeu.isEmpty() || (equipesEnJeu.size() == 1)) {
 			return 1;
 		}
 
-		while(equipesEnJeu.size() > 0){
+		while(equipesEnJeu.size() > 1){
 			aleatoire = random.nextInt(equipesEnJeu.size());
 			Equipe equipe1 = equipesEnJeu.get(aleatoire);
 			equipesEnJeu.remove(aleatoire);

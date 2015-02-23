@@ -176,14 +176,14 @@ public class AffichageConsole {
 	}
 	
 	public void start() {		
-		int tour = controleur.compterNombreTours();
 		//int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
 		
-		for(int j = 0 ; j < tour ; j++){
+		while(controleur.creerTour() == 0){
 			controleur.creerTour();
 			afficherTour();
 			demandeScores();
 		}
+		
 		System.out.println("And the winner isssss : "+tournoi.getWinnerName());
 	}
 
