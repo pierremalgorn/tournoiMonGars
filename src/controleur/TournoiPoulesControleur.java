@@ -21,22 +21,107 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 	@Override
 	public int creerTour() {
 		
-		creerPoules();
+		if(((TournoiPoules) tournoi).getListePoules() == null){
+			creerPoules();
+		};
 		jouerMatch();
 		
 		return 0; //1 : match terminé
 	}
 
 	@Override
-	public void setScore(Match match, int score1, int score2) {
-		// TODO Auto-generated method stub
+	public void setScore(Match match, int scoreEq1, int scoreEq2) {
+		Equipe equipe1; 
+		Equipe equipe2; 
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		
+		
+		match.setScoreEq1(scoreEq1);
+		match.setScoreEq2(scoreEq2);
+		
+		equipe1 = match.getEq1();
+		equipe2 = match.getEq2();
+
+		
+		while(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j) != equipe1){
+			j = j + 1;
+			if(j == 4){
+				i = i + 1;
+				j = 0;
+			}
+		}
+		
+	
+		while(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(k) != equipe2){
+			k = k + 1;
+		}
+		System.out.println("---------");
+		
+		
+		if(scoreEq1 > scoreEq2) {
+			int count = 0;
+			List<Integer> nbPoint = new ArrayList<>();
+			
+			while(count<4){
+				if(count == j){
+					nbPoint.add(3);
+				}
+				else{
+					nbPoint.add(0);
+				}
+				count = count + 1;
+			}
+			
+			
+			((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
+		}
+		
+		else if(scoreEq1 < scoreEq2) {
+			int count = 0;
+			List<Integer> nbPoint = new ArrayList<>();
+			
+			while(count<4){
+				if(count == k){
+					nbPoint.add(3);
+				}
+				else{
+					nbPoint.add(0);
+				}
+			}
+			
+			
+			((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
+		}
+		
+		else{
+			int count = 0;
+			List<Integer> nbPoint = new ArrayList<>();
+			
+			while(count < 4){
+				if(count == k){
+					nbPoint.add(1);
+				}
+				else if(count == j){
+					nbPoint.add(1);
+				}
+				else{
+					nbPoint.add(0);
+				}
+			}
+
+			((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
+		}
+		
+		System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint().get(0));
+		System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint().get(1));
+		System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint().get(2));
+		System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint().get(3));
+		
 		
 	}
-	
-	public int compterNombreTours(){
-		int tour = (int) ((Math.log(tournoi.getNbEquipes()) / Math.log(2)) + 3);
-		return tour;
-	}
+
 	
 	public void creerPoules(){
 		int aleatoire;
@@ -47,22 +132,29 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		List<Equipe> equipesPoule;
 		List<Equipe> equipes = tournoi.getEquipes();
 		List<Poule> poules = new ArrayList<Poule>();
+		List<Integer> nbPoint = new ArrayList<Integer>();
 		
 		
 		for(i=0 ; i<nbPoules ; i++){
 			equipesPoule = new ArrayList<Equipe>();
 			for(j = 0 ; j < 4 ; j++){
-				aleatoire = random.nextInt(equipes.size());
-				
+				aleatoire = random.nextInt(equipes.size());		
 				
 				equipesPoule.add(equipes.get(aleatoire));
 				
 				equipes.remove(aleatoire);
+				nbPoint.add(0);
 			}
-			poule = new Poule(equipesPoule);
+			
+			
+			
+			poule = new Poule(equipesPoule, nbPoint);
 			poules.add(poule);
+			
 		}
+		
 		((TournoiPoules) tournoi).setListePoules(poules);
+		
 	}
 	
 	public void jouerMatch(){
@@ -73,15 +165,15 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		
 		for(i=0 ; i<nbPoules; i++){
 			Equipe equipe1 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(0);
-			Equipe equipe2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(2);
-			Equipe equipe3 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(1);
+			Equipe equipe2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(1);
+			Equipe equipe3 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(2);
 			Equipe equipe4 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(3);
 			
 			tour.add(new Match(equipe1, equipe2));
 			tour.add(new Match(equipe3, equipe4));
-			tournoi.setTour(tour);
+			
 		}
-		
+		tournoi.setTour(tour);
 	}
 
 }

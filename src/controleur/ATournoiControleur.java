@@ -70,8 +70,6 @@ public abstract class ATournoiControleur {
 		return joueurs;
 	}
 	
-	
-	public abstract int compterNombreTours();
 		
 	//Modifier la liste de joueurs à partir d'un nombre
 	public void modifierEquipe(Equipe equipe, String nom, int nbJoueurs, String nomEntraineur) {

@@ -54,11 +54,7 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		return 0;
 		
 	}
-	
-	public int compterNombreTours(){
-		int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
-		return tour;
-	}
+
 	
 	public void setScore(Match match, int scoreEq1, int scoreEq2) {		
 		match.setScoreEq1(scoreEq1);
