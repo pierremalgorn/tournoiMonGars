@@ -121,6 +121,7 @@ public class AffichageGraphique extends JFrame {
 		txtpnVousVousApprtez.setBackground(SystemColor.control);
 		txtpnVousVousApprtez.setText("Vous vous appr\u00E9tez \u00E0 cr\u00E9er un tournoi.\r\nVous devrez rensigner le nom de celui-ci, la dur\u00E9e des matchs (en minutes comprises entre 1 et 120 min) ainsi que le nombre d'\u00E9quipes participant \u00E0 ce tournoi (nombre pair)");
 		txtpnVousVousApprtez.setBounds(10, 21, 444, 86);
+		txtpnVousVousApprtez.setEditable(false);
 		contentPane.add(txtpnVousVousApprtez);
 		
 		tfNom = new JTextField();
@@ -128,7 +129,7 @@ public class AffichageGraphique extends JFrame {
 		contentPane.add(tfNom);
 		tfNom.setColumns(10);
 		
-		//Création du modèle de données
+		//Crï¿½ation du modï¿½le de donnï¿½es
 		final int TEMPSMAX = 120;
 		String[] tempsPossible = new String[TEMPSMAX+1];
 		tempsPossible[0] = "";
@@ -139,7 +140,7 @@ public class AffichageGraphique extends JFrame {
 		cbDuree.setBounds(190, 193, 54, 20);
 		contentPane.add(cbDuree);
 		
-		//Création du modèle de données
+		//Crï¿½ation du modï¿½le de donnï¿½es
 		String[] nbEquipes = {"", "2", "4", "6", "8"};
 		cbNbEquipes = new JComboBox(nbEquipes);
 		cbNbEquipes.setBounds(190, 222, 54, 20);
@@ -156,7 +157,7 @@ public class AffichageGraphique extends JFrame {
 		}
 	}
 	
-	//Réinitialise les couleurs par défaut
+	//Rï¿½initialise les couleurs par dï¿½faut
 	private void reinitialisationCouleursErreurs() {
 		tfNom.setBackground(new Color(255,255,255));
 		cbDuree.setBackground(new Color(255,255,255));

@@ -52,8 +52,8 @@ public class GameMain extends JFrame {
 	private JPanel contentPane;
 	private JPanel pTours;
 	
-	ATournoi tournoi;
-	ATournoiControleur controleur;
+	private ATournoi tournoi;
+	private ATournoiControleur controleur;
 	private JTextField tfNomEquipe;
 	private JTextField tfNomEntraineur;
 	private JPanel pJoueursEquipe;
@@ -65,7 +65,7 @@ public class GameMain extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GameMain(ATournoi tournoi, ATournoiControleur controleur) {
+	public GameMain(ATournoi tournoi, final ATournoiControleur controleur) {
 		this.controleur = controleur;
 		this.tournoi = tournoi;
 		
@@ -117,7 +117,7 @@ public class GameMain extends JFrame {
 		lblAffichermodifierLesInformations.setBounds(510, 11, 396, 38);
 		contentPane.add(lblAffichermodifierLesInformations);
 		
-		//On ajoute les équipes en jeu
+		//On ajoute les ï¿½quipes en jeu
 		List<Equipe> equipes = tournoi.getEquipes();
 		//cbEquipes = new JComboBox<Equipe>();
 		cbEquipes = new JComboBox<Equipe>(equipes.toArray(new Equipe[equipes.size()]));
@@ -283,7 +283,7 @@ public class GameMain extends JFrame {
 				score = Integer.valueOf(caseEquipe.getTfScore().getText());
 			} catch (NumberFormatException e) {
 				err = -1;
-				System.out.println("Erreur de saisie de l'utilisateur sur les résultats de match");
+				System.out.println("Erreur de saisie de l'utilisateur sur les rï¿½sultats de match");
 			}
 			
 			if(score < 0 || score > MAXSCORE || err == -1) {

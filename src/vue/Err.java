@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class Err extends JDialog {
 
@@ -44,19 +45,22 @@ public class Err extends JDialog {
 		lblVotreSaisieEst.setBounds(37, 51, 387, 14);
 		contentPanel.add(lblVotreSaisieEst);
 		
-		JTextPane txtpnChampsErrones = new JTextPane();
-		txtpnChampsErrones.setForeground(Color.RED);
-		txtpnChampsErrones.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		//Concaténation des champs erronés
+		//Concatï¿½nation des champs erronï¿½s
 		String strChampsErrones = new String();
 		for(String champ : champsErrones) {
-			strChampsErrones = strChampsErrones.concat("\n").concat(champ);
-		}
+			strChampsErrones = strChampsErrones.concat(champ).concat("\n");
+		}		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(68, 77, 325, 93);
+		contentPanel.add(scrollPane);
+		
+		JTextPane txtpnChampsErrones = new JTextPane();
+		scrollPane.setViewportView(txtpnChampsErrones);
+		txtpnChampsErrones.setForeground(Color.RED);
+		txtpnChampsErrones.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtpnChampsErrones.setText(strChampsErrones);
 		txtpnChampsErrones.setBackground(SystemColor.control);
-		txtpnChampsErrones.setBounds(83, 76, 303, 101);
-		contentPanel.add(txtpnChampsErrones);
+		txtpnChampsErrones.setEditable(false);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
