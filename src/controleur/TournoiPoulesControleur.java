@@ -58,18 +58,19 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 			k = k + 1;
 		}
 		System.out.println("---------");
-		
+		List<Integer> nbPointActuel = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint();
 		
 		if(scoreEq1 > scoreEq2) {
 			int count = 0;
 			List<Integer> nbPoint = new ArrayList<>();
 			
 			while(count<4){
-				if(count == j){
-					nbPoint.add(3);
+				if(count == j){	
+					int nbPointApres = nbPointActuel.get(count) + 3;
+					nbPoint.add(nbPointApres);
 				}
 				else{
-					nbPoint.add(0);
+					nbPoint.add(nbPointActuel.get(count));
 				}
 				count = count + 1;
 			}
@@ -84,11 +85,13 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 			
 			while(count<4){
 				if(count == k){
-					nbPoint.add(3);
+					int nbPointApres = nbPointActuel.get(count) + 3;
+					nbPoint.add(nbPointApres);
 				}
 				else{
-					nbPoint.add(0);
+					nbPoint.add(nbPointActuel.get(count));
 				}
+				count = count + 1;
 			}
 			
 			
@@ -101,24 +104,21 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 			
 			while(count < 4){
 				if(count == k){
-					nbPoint.add(1);
+					int nbPointApres = nbPointActuel.get(count) + 1;
+					nbPoint.add(nbPointApres);
 				}
 				else if(count == j){
-					nbPoint.add(1);
+					int nbPointApres = nbPointActuel.get(count) + 1;
+					nbPoint.add(nbPointApres);
 				}
 				else{
 					nbPoint.add(0);
 				}
+				count = count + 1;
 			}
 
 			((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
 		}
-		
-		System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint().get(0));
-		System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint().get(1));
-		System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint().get(2));
-		System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint().get(3));
-		
 		
 	}
 
