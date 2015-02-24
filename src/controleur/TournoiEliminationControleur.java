@@ -68,5 +68,6 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		}
 		
 	}
+
 	
 }

@@ -1,9 +1,14 @@
 package vue;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -22,6 +27,7 @@ public class EquipeScoreAffiche extends JPanel {
 		tfScore = new JTextField();
 		this.setBorder(creerBordure());
 		populate();
+		
 	}
 	
 	private void populate() {
@@ -31,8 +37,9 @@ public class EquipeScoreAffiche extends JPanel {
 		score.add(new JLabel("Score : ", SwingConstants.RIGHT));
 		
 		//On crée un noueau Panel pour contenir le TF pour régler la taille
-		JPanel textfieldContainer = new JPanel(null);
-		tfScore.setBounds(0, 4, 35, 20);
+		JPanel textfieldContainer = new JPanel();
+		textfieldContainer.setLayout(new BoxLayout(textfieldContainer, BoxLayout.X_AXIS));
+		tfScore.setMaximumSize(new Dimension(35, 20));
 		textfieldContainer.add(tfScore);
 		score.add(textfieldContainer);
 		

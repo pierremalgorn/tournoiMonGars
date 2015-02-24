@@ -49,18 +49,18 @@ public abstract class ATournoi {
 		this.tour = tour;
 	}
 	
-	public String getWinnerName() {
+	public Equipe getWinner() {
 		if(tour.size() == 1) {
 			Equipe winner = tour.get(0).getWinner();
 			if (winner != null ) {
-				return winner.getNom();
+				return winner;
 			}
 			else {
-				return "Erreur";
+				return null;
 			}
 		}
 		else {
-			return "Le jeu n'est pas fini !";
+			return null;
 		}
 	}
 	

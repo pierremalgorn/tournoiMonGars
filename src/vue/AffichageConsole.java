@@ -184,7 +184,7 @@ public class AffichageConsole {
 			demandeScores();
 		}
 		
-		System.out.println("And the winner isssss : "+tournoi.getWinnerName());
+		System.out.println("And the winner isssss : "+tournoi.getWinner().getNom());
 	}
 
 	public void initialisationTournoi() {

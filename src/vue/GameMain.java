@@ -1,26 +1,18 @@
 package vue;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
-
-import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-
 import modele.ATournoi;
 import modele.Equipe;
 import modele.Joueur;
 import modele.Match;
 
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +29,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JSeparator;
 import javax.swing.JComboBox;
 import javax.swing.BoxLayout;
 
@@ -48,7 +39,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JSpinner;
 
 public class GameMain extends JFrame {
-
+	
 	private JPanel contentPane;
 	private JPanel pTours;
 	
@@ -77,7 +68,7 @@ public class GameMain extends JFrame {
 		contentPane.setLayout(null);
 		
 		pTours = new JPanel();
-		pTours.setBounds(32, 90, 418, 269);
+		pTours.setBounds(32, 90, 418, 371);
 		contentPane.add(pTours);
 		
 		JLabel lblEquipesSaffrontantAu = new JLabel("Equipes s'affrontant au prochain tour :");
@@ -104,12 +95,21 @@ public class GameMain extends JFrame {
 		btnValiderLesScores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(validerScores() == 0) {
-					controleur.creerTour();
+					if(controleur.creerTour() == 1) { //Si le jeu est terminé
+						try {
+							EndWInner dialog = new EndWInner(tournoi.getWinner());
+							dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+							dialog.setVisible(true);
+							dispose();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
 					afficherProchainsTours();
 				}
 			}
 		});
-		btnValiderLesScores.setBounds(268, 414, 169, 23);
+		btnValiderLesScores.setBounds(269, 509, 169, 23);
 		contentPane.add(btnValiderLesScores);
 		
 		JLabel lblAffichermodifierLesInformations = new JLabel("Afficher/modifier les informations d'une \u00E9quipe :");
