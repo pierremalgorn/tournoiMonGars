@@ -176,9 +176,13 @@ public class AffichageConsole {
 	}
 	
 	public void start() {		
-		//int tour = (int) (Math.log(tournoi.getNbEquipes()) / Math.log(2));
+	
 		
-		while(controleur.creerTour() == 0){
+		while(tournoi.getTournoiFini() != 1){
+			if(tournoi.getTournoiFini() == 2){
+				tournoi = new TournoiElimination("nomTournoi", 80, 4);
+				controleur = new TournoiEliminationControleur(tournoi);
+			}
 			controleur.creerTour();
 			afficherTour();
 			demandeScores();

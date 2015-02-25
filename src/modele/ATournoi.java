@@ -11,7 +11,14 @@ public abstract class ATournoi {
 	private int nbEquipes;
 	private List<Equipe> equipes;
 	private List<Match> tour;
+	private int tournoiFini;
 	
+	public int getTournoiFini() {
+		return tournoiFini;
+	}
+
+
+
 	public ATournoi(String nom, int tpsMatchEnM, int nbEquipes) {
 		super();
 		this.nom = nom;
@@ -62,6 +69,11 @@ public abstract class ATournoi {
 		else {
 			return null;
 		}
+	}
+
+
+	public void setTournoiFini(int tournoiFini) {
+		this.tournoiFini = tournoiFini;
 	}
 	
 }

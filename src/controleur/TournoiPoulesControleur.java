@@ -19,14 +19,28 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 
 	
 	@Override
-	public int creerTour() {
+	public void creerTour() {
+		int nombreTours = 0;
 		
 		if(((TournoiPoules) tournoi).getListePoules() == null){
 			creerPoules();
 		};
 		jouerMatch();
 		
-		return 0; //1 : match terminé
+		nombreTours = ((TournoiPoules) tournoi).getNbTours();
+		if(nombreTours == 2){
+			
+			tournoi.setTournoiFini(2);
+		}
+		else{
+			((TournoiPoules) tournoi).setNbTours(nombreTours + 1);
+			System.out.println(((TournoiPoules) tournoi).getNbTours());
+			tournoi.setTournoiFini(0); //1 : match terminé
+		}
+		
+		
+		
+
 	}
 
 	@Override

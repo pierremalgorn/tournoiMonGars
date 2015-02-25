@@ -15,7 +15,7 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		this.tournoi = (TournoiElimination)tournoi;
 	}
 	
-	public int creerTour(){
+	public void creerTour(){
 				
 		int aleatoire;
 		int aleatoire2;
@@ -33,8 +33,11 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		}
 		
 		//S'il n'y a plus d'équipes en jeu, le tournoi est terminé
-		if(equipesEnJeu.isEmpty() || (equipesEnJeu.size() == 1)) {
-			return 1;
+		if(equipesEnJeu.size() == 2) {
+			tournoi.setTournoiFini(1);
+		}
+		else{
+			tournoi.setTournoiFini(0);
 		}
 
 		while(equipesEnJeu.size() > 1){
@@ -51,7 +54,7 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		}
 		
 		tournoi.setTour(tour);
-		return 0;
+		
 		
 	}
 
