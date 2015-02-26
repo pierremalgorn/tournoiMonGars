@@ -95,7 +95,7 @@ public class GameMain extends JFrame {
 		btnValiderLesScores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(validerScores() == 0) {
-					if(controleur.creerTour() == 1) { //Si le jeu est terminé
+					if(tournoi.getTournoiFini() == 1) { //Si le jeu est terminé
 						try {
 							EndWInner dialog = new EndWInner(tournoi.getWinner());
 							dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -105,6 +105,7 @@ public class GameMain extends JFrame {
 							e.printStackTrace();
 						}
 					}
+					controleur.creerTour();
 					afficherProchainsTours();
 				}
 			}

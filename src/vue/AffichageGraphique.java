@@ -91,6 +91,12 @@ public class AffichageGraphique extends JFrame {
 					tournoi = new TournoiPoules(tfNom.getText(), Integer.parseInt((String)cbDuree.getSelectedItem()), Integer.parseInt((String)cbNbEquipes.getSelectedItem()));
 					controleur = new TournoiPoulesControleur(tournoi);
 				}
+				try {
+					GameMain frame = new GameMain(tournoi, controleur);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		btnTournoiParPoules.setBounds(142, 410, 200, 50);
