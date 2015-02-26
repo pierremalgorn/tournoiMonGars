@@ -7,6 +7,24 @@ public class Equipe {
 	private String nom;
 	private String nomEntraineur;
 	private List<Joueur> joueurs;
+	private int nbButsMarques;
+	private int nbButsEncaisses;
+	public int getNbButsMarques() {
+		return nbButsMarques;
+	}
+
+	public void setNbButsMarques(int nbButsMarques) {
+		this.nbButsMarques = nbButsMarques;
+	}
+
+	public int getNbButsEncaisses() {
+		return nbButsEncaisses;
+	}
+
+	public void setNbButsEncaisses(int nbButsEncaisses) {
+		this.nbButsEncaisses = nbButsEncaisses;
+	}
+
 	private boolean elimine;
 	
 

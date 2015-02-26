@@ -60,9 +60,13 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 	}
 
 	
-	public void setScore(Match match, int scoreEq1, int scoreEq2) {		
+	public void setScore(Match match, int scoreEq1, int scoreEq2) {	
 		match.setScoreEq1(scoreEq1);
 		match.setScoreEq2(scoreEq2);
+		match.getEq1().setNbButsMarques(match.getEq1().getNbButsMarques() + scoreEq1);
+		match.getEq1().setNbButsEncaisses(match.getEq1().getNbButsEncaisses() + scoreEq2);
+		match.getEq2().setNbButsMarques(match.getEq2().getNbButsMarques() + scoreEq2);
+		match.getEq2().setNbButsEncaisses(match.getEq2().getNbButsEncaisses() + scoreEq1);
 		
 		if(scoreEq1 > scoreEq2) {
 			match.getEq2().setElimine(true);

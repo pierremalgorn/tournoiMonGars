@@ -2,7 +2,6 @@ package controleur;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -10,7 +9,6 @@ import modele.ATournoi;
 import modele.Equipe;
 import modele.Match;
 import modele.Poule;
-import modele.TournoiElimination;
 import modele.TournoiPoules;
 
 public class TournoiPoulesControleur extends ATournoiControleur {
@@ -59,6 +57,10 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		
 		match.setScoreEq1(scoreEq1);
 		match.setScoreEq2(scoreEq2);
+		match.getEq1().setNbButsMarques(match.getEq1().getNbButsMarques() + scoreEq1);
+		match.getEq1().setNbButsEncaisses(match.getEq1().getNbButsEncaisses() + scoreEq2);
+		match.getEq2().setNbButsMarques(match.getEq2().getNbButsMarques() + scoreEq2);
+		match.getEq2().setNbButsEncaisses(match.getEq2().getNbButsEncaisses() + scoreEq1);
 		
 		equipe1 = match.getEq1();
 		equipe2 = match.getEq2();
@@ -140,26 +142,40 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		int i = 0;
 		int j = 0;
 		int k = 0;
+		int l = 0;
 		
 		for(i=0 ; i<((TournoiPoules) tournoi).getListePoules().size(); i++){
 			
-			equipesPoule = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule();
+			j = 0;
 			pointPoule = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint();
 			
-			for(k=0; k<4; k++){
+			pointPouleOrdonnee.removeAll(pointPouleOrdonnee);
+			
+			for(k=0; k<4; k++){	
 				pointPouleOrdonnee.add(pointPoule.get(k));
+			}
+			
+			equipesPoule.removeAll(equipesPoule);
+			
+			for(k=0; k<4; k++){	
+				equipesPoule.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(k));
 			}
 			
 			Collections.sort(pointPouleOrdonnee);
 			
+			
 			if(pointPouleOrdonnee.get(1) != pointPouleOrdonnee.get(2)){
 				
 				int pointEquipe = pointPouleOrdonnee.get(3);
+				
 				while(pointEquipe != pointPoule.get(j)){
 					j = j + 1;
 				}
+				
 				equipeElim.add(equipesPoule.get(j));
-				//equipesPoule.remove(equipesPoule.get(j));
+				equipesPoule.remove(equipesPoule.get(j));
+				pointPoule.remove(pointPoule.get(j));
+				
 				j = 0;
 				pointEquipe = pointPouleOrdonnee.get(2);
 
@@ -168,6 +184,67 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 				}
 				equipeElim.add(equipesPoule.get(j));
 			}
+			
+			else if(pointPouleOrdonnee.get(1) == pointPouleOrdonnee.get(2)){
+				if(pointPouleOrdonnee.get(1) != pointPouleOrdonnee.get(0)){
+					int nbButsMarquesEq1;
+					int nbButsMarquesEq2;
+					int nbButsEncaissesEq1;
+					int nbButsEncaissesEq2;
+					int differenceEq1;
+					int differenceEq2;
+					
+				
+					int pointEquipe = pointPouleOrdonnee.get(3);
+					
+					j = 0;
+					while(pointEquipe != pointPoule.get(j)){
+						j = j + 1;
+					}
+					
+					equipeElim.add(equipesPoule.get(j));
+
+					
+					j = 0;
+					pointEquipe = pointPouleOrdonnee.get(2);
+
+					while(pointEquipe != pointPoule.get(j)){
+						j = j + 1;
+					}
+					nbButsMarquesEq1 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j).getNbButsMarques();
+					nbButsEncaissesEq1 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j).getNbButsEncaisses();
+					differenceEq1 = nbButsMarquesEq1 - nbButsEncaissesEq1;
+
+					equipesPoule.remove(j);
+					pointPoule.remove(j);
+					
+					l = 0;
+					while(pointEquipe != pointPoule.get(l)){
+						l = l + 1;
+					}
+					nbButsMarquesEq2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l+1).getNbButsMarques();
+					nbButsEncaissesEq2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l+1).getNbButsEncaisses();
+					differenceEq2 = nbButsMarquesEq2 - nbButsEncaissesEq2;
+
+					if(differenceEq1 < differenceEq2){
+						equipeElim.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l+1));
+					}
+					else{
+						equipeElim.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j));
+					}
+				
+				}
+				
+				else{
+					Random random = new Random();
+					int aleatoire = random.nextInt(3);
+					equipeElim.add(equipesPoule.get(aleatoire));
+					equipesPoule.remove(aleatoire);
+					int aleatoire2 = random.nextInt(2);
+					equipeElim.add(equipesPoule.get(aleatoire2));
+				}
+			}
+				
 		}
 		
 		
