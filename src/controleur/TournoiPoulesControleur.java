@@ -139,17 +139,18 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		List<Equipe> equipesPoule = new ArrayList<>();
 		int i = 0;
 		int j = 0;
+		int k = 0;
 		
 		for(i=0 ; i<((TournoiPoules) tournoi).getListePoules().size(); i++){
 			
 			equipesPoule = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule();
 			pointPoule = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint();
-			pointPouleOrdonnee = pointPoule;
 			
-			System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint());
+			for(k=0; k<4; k++){
+				pointPouleOrdonnee.add(pointPoule.get(k));
+			}
 			
 			Collections.sort(pointPouleOrdonnee);
-
 			
 			if(pointPouleOrdonnee.get(1) != pointPouleOrdonnee.get(2)){
 				
@@ -162,7 +163,6 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 				j = 0;
 				pointEquipe = pointPouleOrdonnee.get(2);
 
-				System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint());
 				while(pointEquipe != pointPoule.get(j)){
 					j = j + 1;
 				}
@@ -172,9 +172,6 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		
 		
 		tournoi.setEquipes(equipeElim);
-		
-		System.out.println(tournoi.getEquipes().get(0).getNom());
-		System.out.println(tournoi.getEquipes().get(1).getNom());
 	}
 
 	
