@@ -20,21 +20,21 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 
 	
 	@Override
-	public void creerTour() {
+	public void creerTour() { //appelé par la vue
 		int nombreTours = 0;
 		
-		if(((TournoiPoules) tournoi).getListePoules() == null){
+		if(((TournoiPoules) tournoi).getListePoules() == null){ // Si la liste des poules n'existe pas, on la crée
 			creerPoules();
 		};
 		jouerMatch();
 		
 		nombreTours = ((TournoiPoules) tournoi).getNbTours();
-		if(nombreTours == 2){
+		if(nombreTours == 2){ // On change l'attribut nombreTours pour indiquer que la phase de poules est terminée
 			
 			tournoi.setTournoiFini(2);
 		}
 		else{
-			((TournoiPoules) tournoi).setNbTours(nombreTours + 1);
+			((TournoiPoules) tournoi).setNbTours(nombreTours + 1); // On incrémente le nombre de tours
 			tournoi.setTournoiFini(0); //1 : match terminé
 		}
 		
@@ -44,7 +44,7 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 	}
 
 	@Override
-	public void setScore(Match match, int scoreEq1, int scoreEq2) {
+	public void setScore(Match match, int scoreEq1, int scoreEq2) { // Appelé pour déterminer les scores et le nombre de points qui en découle
 		Equipe equipe1; 
 		Equipe equipe2; 
 		List<Integer> nbPoint = new ArrayList<>();
@@ -56,8 +56,8 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		
 		match.setScoreEq1(scoreEq1);
 		match.setScoreEq2(scoreEq2);
-		match.getEq1().setNbButsMarques(match.getEq1().getNbButsMarques() + scoreEq1);
-		match.getEq1().setNbButsEncaisses(match.getEq1().getNbButsEncaisses() + scoreEq2);
+		match.getEq1().setNbButsMarques(match.getEq1().getNbButsMarques() + scoreEq1); //On affilie à chaque équipe un nombre de buts marqués
+		match.getEq1().setNbButsEncaisses(match.getEq1().getNbButsEncaisses() + scoreEq2); //On affilie à chaque équipe un nombre de buts encaissés
 		match.getEq2().setNbButsMarques(match.getEq2().getNbButsMarques() + scoreEq2);
 		match.getEq2().setNbButsEncaisses(match.getEq2().getNbButsEncaisses() + scoreEq1);
 		
@@ -65,7 +65,7 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		equipe2 = match.getEq2();
 
 		
-		while(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j) != equipe1){
+		while(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j) != equipe1){ // On cherche à quelle poule appartiennent les équipes qui ont joué le match
 			j = j + 1;
 			if(j == 4){
 				i = i + 1;
@@ -74,21 +74,21 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		}
 		
 	
-		while(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(k) != equipe2){
+		while(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(k) != equipe2){ 
 			k = k + 1;
 		}
 
 		nbPointActuel = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint();
 		
-		if(scoreEq1 > scoreEq2) {
+		if(scoreEq1 > scoreEq2) { 
 			int count = 0;
 			
 			while(count<4){
-				if(count == j){	
+				if(count == j){	 // On incrémente de 3 le nombre de points de l'équipe1
 					int nbPointApres = nbPointActuel.get(count) + 3;
 					nbPoint.add(nbPointApres);
 				}
-				else{
+				else{ // Le nombre de point des autres équipes reste inchangé
 					nbPoint.add(nbPointActuel.get(count));
 				}
 				count = count + 1;
@@ -99,18 +99,18 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 			int count = 0;
 			
 			while(count<4){
-				if(count == k){
+				if(count == k){ //On incrémente de 3 le nombre de points de l'équipe2
 					int nbPointApres = nbPointActuel.get(count) + 3;
 					nbPoint.add(nbPointApres);
 				}
-				else{
+				else{ // Le nombre de point des autres équipes reste inchangé
 					nbPoint.add(nbPointActuel.get(count));
 				}
 				count = count + 1;
 			}
 		}
 		
-		else{
+		else{ // Dans le cas où il y a égalité, on incrémente de 1 le nombre de points des 2 équipes qui ont joué le match
 			int count = 0;
 			
 			while(count < 4){
@@ -133,7 +133,7 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
 	}
 	
-	public void preparerElimination(){
+	public void preparerElimination(){ //Vise à préparer la transition des poules à la partie éliminatoire
 		List<Integer> pointPoule = new ArrayList<>();
 		List<Integer> pointPouleOrdonnee = new ArrayList<>();
 		List<Equipe> equipeElim = new ArrayList<>();
@@ -143,10 +143,10 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		int k = 0;
 		int l = 0;
 		
-		for(i=0 ; i<((TournoiPoules) tournoi).getListePoules().size(); i++){
+		for(i=0 ; i<((TournoiPoules) tournoi).getListePoules().size(); i++){ // Autant de fois qu'il y a de poules
 			
 			j = 0;
-			pointPoule = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint();
+			pointPoule = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint(); // On récupère le nombre de point
 			
 			pointPouleOrdonnee.removeAll(pointPouleOrdonnee);
 			
@@ -160,10 +160,10 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 				equipesPoule.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(k));
 			}
 			
-			Collections.sort(pointPouleOrdonnee);
+			Collections.sort(pointPouleOrdonnee); // On ordonne la liste du nombre de points des équipes de la poule
 			
 			
-			if(pointPouleOrdonnee.get(1) != pointPouleOrdonnee.get(2)){
+			if(pointPouleOrdonnee.get(1) != pointPouleOrdonnee.get(2)){ // Si le 2è et le 3è n'ont pas le même nombre de points
 				
 				int pointEquipe = pointPouleOrdonnee.get(3);
 				
@@ -171,8 +171,8 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 					j = j + 1;
 				}
 				
-				equipeElim.add(equipesPoule.get(j));
-				equipesPoule.remove(equipesPoule.get(j));
+				equipeElim.add(equipesPoule.get(j)); // On ajoute la 1è équipe
+				equipesPoule.remove(equipesPoule.get(j)); // On la supprime de la liste temporaire pour ne pas la saisir à nouveau
 				pointPoule.remove(pointPoule.get(j));
 				
 				j = 0;
@@ -181,11 +181,11 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 				while(pointEquipe != pointPoule.get(j)){
 					j = j + 1;
 				}
-				equipeElim.add(equipesPoule.get(j));
+				equipeElim.add(equipesPoule.get(j)); // On ajoute la deuxième équipe
 			}
 			
-			else if(pointPouleOrdonnee.get(1) == pointPouleOrdonnee.get(2)){
-				if(pointPouleOrdonnee.get(1) != pointPouleOrdonnee.get(0)){
+			else if(pointPouleOrdonnee.get(1) == pointPouleOrdonnee.get(2)){ // Si la 2è et la 3è équipe ont le meme nombre de points
+				if(pointPouleOrdonnee.get(1) != pointPouleOrdonnee.get(0)){ // Si toutes les équipes n'ont pas toutes le meme nombre de points
 					int nbButsMarquesEq1;
 					int nbButsMarquesEq2;
 					int nbButsEncaissesEq1;
@@ -201,7 +201,7 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 						j = j + 1;
 					}
 					
-					equipeElim.add(equipesPoule.get(j));
+					equipeElim.add(equipesPoule.get(j)); // On ajoute la 1è équipe qui a plus de points
 
 					
 					j = 0;
@@ -225,7 +225,7 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 					nbButsEncaissesEq2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l+1).getNbButsEncaisses();
 					differenceEq2 = nbButsMarquesEq2 - nbButsEncaissesEq2;
 
-					if(differenceEq1 < differenceEq2){
+					if(differenceEq1 < differenceEq2){ // On compare la différence entre le nombre de buts marqués et le nombre de buts encaissés pour l'équipe1 et l'équipe2
 						equipeElim.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l+1));
 					}
 					else{
@@ -234,7 +234,7 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 				
 				}
 				
-				else{
+				else{ //Dans le cas où toutes les équipes ont le meme nombre de points, on sélectionne les équipes aléatoirement
 					Random random = new Random();
 					int aleatoire = random.nextInt(3);
 					equipeElim.add(equipesPoule.get(aleatoire));
@@ -247,11 +247,11 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		}
 		
 		
-		tournoi.setEquipes(equipeElim);
+		tournoi.setEquipes(equipeElim); // On fait une nouvelle liste d'équipes pouvant accéder à la partie à élimination directe
 	}
 
 	
-	public void creerPoules(){
+	public void creerPoules(){ // Appelée une unique fois
 		int aleatoire;
 		int nbPoules = (tournoi.getNbEquipes())/4;
 		int i, j;
@@ -270,26 +270,25 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		for(i=0 ; i<nbPoules ; i++){
 			equipesPoule = new ArrayList<Equipe>();
 			for(j = 0 ; j < 4 ; j++){
-				aleatoire = random.nextInt(equipes.size());		
+				aleatoire = random.nextInt(equipes.size()); // On sélectionne les équipes aléatoirement dans la liste d'équipes
 				
 				equipesPoule.add(equipes.get(aleatoire));
 				
-				equipes.remove(aleatoire);
-				nbPoint.add(0);
+				equipes.remove(aleatoire); // On supprime ensuite l"équipe qu'on a ajouté
+				nbPoint.add(0); // On initialise le nombre de points associé à l'équipe
 			}
 			
 			
 			
-			poule = new Poule(equipesPoule, nbPoint, tableauRencontres);
-			poules.add(poule);
+			poule = new Poule(equipesPoule, nbPoint, tableauRencontres); // On instancie la nouvelle poule
+			poules.add(poule);  // On l'ajoute à la liste de poules
 			
 		}
 		
 		((TournoiPoules) tournoi).setListePoules(poules);
 		for(i=0 ; i<nbPoules ; i++){
 			tableauRencontres[0][0] = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(0).getNom();
-			tableauRencontres[1][0] = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(1).getNom();
-			tableauRencontres[2][0] = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(2).getNom();
+
 			((TournoiPoules) tournoi).getListePoules().get(i).setTableauRencontres(tableauRencontres);
 		}
 		
@@ -310,9 +309,10 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 			for(j=0; j<4; j++){
 				equipesPresentes.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j).getNom());
 			}
-			
+
 			equipe1 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(0);
 			equipesPresentes.remove(0);
+
 			
 			String[][] tab = ((TournoiPoules) tournoi).getListePoules().get(i).getTableauRencontres();
 			
@@ -330,32 +330,51 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 			}
 			
 			int aleatoire = random.nextInt(equipesPresentes.size());
-			equipe2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(aleatoire);
+			
+			
+			l = 0;
+			while(equipesPresentes.get(aleatoire) != ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l).getNom()){
+				l=l+1;
+			}
+			equipe2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l);
 			tab[0][nbTours] = equipe2.getNom();
 			
-			for(j=0; j<4; j++){
-				equipesPresentes.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j).getNom());
-			}
+			equipesPresentes.add(equipe1.getNom());
+			equipesPresentes.add(equipe2.getNom());
+			System.out.println(equipesPresentes.get(0));
+			System.out.println(equipesPresentes.get(1));
+			System.out.println(equipesPresentes.get(2));
+			System.out.println(equipesPresentes.get(3));
+			System.out.println(equipe1.getNom());
+			System.out.println(equipe2.getNom());
+			
+			
 			
 			l = 0;
 			while(equipe1.getNom() != equipesPresentes.get(l)){
 				l = l+1;
 			}
+			System.out.println(equipesPresentes.get(l));
 			equipesPresentes.remove(l);
+			
+
 			
 			l = 0;
 			while(equipe2.getNom() != equipesPresentes.get(l)){
 				l = l+1;
 			}
+			System.out.println(equipesPresentes.get(l));
 			equipesPresentes.remove(l);
 			
 			l=0;
+			System.out.println(equipesPresentes.get(0));
 			while(equipesPresentes.get(0) != ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l).getNom()){
 				l = l+1;
 			}
 			equipe3 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l);
 			
 			l=0;
+			System.out.println(equipesPresentes.get(1));
 			while(equipesPresentes.get(1) != ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l).getNom()){
 				l = l+1;
 			}
