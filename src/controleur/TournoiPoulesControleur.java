@@ -259,7 +259,8 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		Random random = new Random();
 		Poule poule;
 		List<Equipe> equipesPoule;
-		List<Equipe> equipes = tournoi.getEquipes();
+		List<Equipe> equipes = new ArrayList<Equipe>(); /*= tournoi.getEquipes()*/;
+		equipes.addAll(tournoi.getEquipes());
 		List<Poule> poules = new ArrayList<Poule>();
 		List<Integer> nbPoint = new ArrayList<Integer>();
 		

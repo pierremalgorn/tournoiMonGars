@@ -2,16 +2,19 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Component;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
+
 import modele.ATournoi;
 import modele.Equipe;
 import modele.Joueur;
 import modele.Match;
+import modele.TournoiElimination;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import java.util.List;
 import javax.swing.JLabel;
 
 import controleur.ATournoiControleur;
+import controleur.TournoiEliminationControleur;
 
 import java.awt.Font;
 
@@ -56,9 +60,9 @@ public class GameMain extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GameMain(ATournoi tournoi, final ATournoiControleur controleur) {
-		this.controleur = controleur;
-		this.tournoi = tournoi;
+	public GameMain(ATournoi tournoiArg, ATournoiControleur controleurArg) {
+		this.controleur = controleurArg;
+		this.tournoi = tournoiArg;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 954, 617);
@@ -104,6 +108,13 @@ public class GameMain extends JFrame {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
+					} else if (tournoi.getTournoiFini() == 2) {
+						List<Equipe> equipePoule = new ArrayList<Equipe>();
+						equipePoule = tournoi.getEquipes();
+
+						tournoi = new TournoiElimination(tournoi.getNom(), tournoi.getTpsMatchEnM(), tournoi.getNbEquipes()/2);
+						controleur = new TournoiEliminationControleur(tournoi);
+						tournoi.setEquipes(equipePoule);
 					}
 					controleur.creerTour();
 					afficherProchainsTours();
