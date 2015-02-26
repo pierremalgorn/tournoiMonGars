@@ -180,8 +180,15 @@ public class AffichageConsole {
 		
 		while(tournoi.getTournoiFini() != 1){
 			if(tournoi.getTournoiFini() == 2){
-				tournoi = new TournoiElimination("nomTournoi", 80, 4);
+				List<Equipe> equipePoule = new ArrayList<>();
+				String nom = tournoi.getNom();
+				int temps = tournoi.getTpsMatchEnM();
+				int nbEquipes = tournoi.getNbEquipes()/2;
+				equipePoule = tournoi.getEquipes();
+
+				tournoi = new TournoiElimination(nom, temps, nbEquipes);
 				controleur = new TournoiEliminationControleur(tournoi);
+				tournoi.setEquipes(equipePoule);
 			}
 			controleur.creerTour();
 			afficherTour();
@@ -247,6 +254,10 @@ public class AffichageConsole {
 			} while (score2 == -1 );
 			
 			controleur.setScore(match, score1, score2);
+		}
+		
+		if(tournoi.getTournoiFini() == 2){
+			((TournoiPoulesControleur) controleur).preparerElimination();
 		}
 		
 	}

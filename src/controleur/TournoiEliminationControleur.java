@@ -3,6 +3,7 @@ package controleur;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import modele.ATournoi;
 import modele.Equipe;
 import modele.Match;
@@ -25,6 +26,8 @@ public class TournoiEliminationControleur extends ATournoiControleur {
 		
 		List<Equipe> equipes = tournoi.getEquipes();
 		List<Equipe> equipesEnJeu = new ArrayList<Equipe>();
+		System.out.println(tournoi.getEquipes().get(0).getNom());
+		System.out.println(tournoi.getEquipes().get(1).getNom());
 		
 		for(Equipe 	equipe : equipes){
 			if (equipe.isElimine() == false){

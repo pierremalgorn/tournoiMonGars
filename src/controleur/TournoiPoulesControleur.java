@@ -1,6 +1,8 @@
 package controleur;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -8,6 +10,7 @@ import modele.ATournoi;
 import modele.Equipe;
 import modele.Match;
 import modele.Poule;
+import modele.TournoiElimination;
 import modele.TournoiPoules;
 
 public class TournoiPoulesControleur extends ATournoiControleur {
@@ -47,6 +50,8 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 	public void setScore(Match match, int scoreEq1, int scoreEq2) {
 		Equipe equipe1; 
 		Equipe equipe2; 
+		List<Integer> nbPoint = new ArrayList<>();
+		List<Integer> nbPointActuel = new ArrayList<>();
 		int i = 0;
 		int j = 0;
 		int k = 0;
@@ -71,12 +76,11 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		while(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(k) != equipe2){
 			k = k + 1;
 		}
-		System.out.println("---------");
-		List<Integer> nbPointActuel = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint();
+
+		nbPointActuel = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint();
 		
 		if(scoreEq1 > scoreEq2) {
 			int count = 0;
-			List<Integer> nbPoint = new ArrayList<>();
 			
 			while(count<4){
 				if(count == j){	
@@ -88,14 +92,10 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 				}
 				count = count + 1;
 			}
-			
-			
-			((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
 		}
 		
 		else if(scoreEq1 < scoreEq2) {
 			int count = 0;
-			List<Integer> nbPoint = new ArrayList<>();
 			
 			while(count<4){
 				if(count == k){
@@ -107,14 +107,10 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 				}
 				count = count + 1;
 			}
-			
-			
-			((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
 		}
 		
 		else{
 			int count = 0;
-			List<Integer> nbPoint = new ArrayList<>();
 			
 			while(count < 4){
 				if(count == k){
@@ -126,14 +122,59 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 					nbPoint.add(nbPointApres);
 				}
 				else{
-					nbPoint.add(0);
+					nbPoint.add(nbPointActuel.get(count));
 				}
 				count = count + 1;
 			}
 
-			((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
+			
+		}
+		((TournoiPoules) tournoi).getListePoules().get(i).setNbPoint(nbPoint);
+	}
+	
+	public void preparerElimination(){
+		List<Integer> pointPoule = new ArrayList<>();
+		List<Integer> pointPouleOrdonnee = new ArrayList<>();
+		List<Equipe> equipeElim = new ArrayList<>();
+		List<Equipe> equipesPoule = new ArrayList<>();
+		int i = 0;
+		int j = 0;
+		
+		for(i=0 ; i<((TournoiPoules) tournoi).getListePoules().size(); i++){
+			
+			equipesPoule = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule();
+			pointPoule = ((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint();
+			pointPouleOrdonnee = pointPoule;
+			
+			System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint());
+			
+			Collections.sort(pointPouleOrdonnee);
+
+			
+			if(pointPouleOrdonnee.get(1) != pointPouleOrdonnee.get(2)){
+				
+				int pointEquipe = pointPouleOrdonnee.get(3);
+				while(pointEquipe != pointPoule.get(j)){
+					j = j + 1;
+				}
+				equipeElim.add(equipesPoule.get(j));
+				//equipesPoule.remove(equipesPoule.get(j));
+				j = 0;
+				pointEquipe = pointPouleOrdonnee.get(2);
+
+				System.out.println(((TournoiPoules) tournoi).getListePoules().get(i).getNbPoint());
+				while(pointEquipe != pointPoule.get(j)){
+					j = j + 1;
+				}
+				equipeElim.add(equipesPoule.get(j));
+			}
 		}
 		
+		
+		tournoi.setEquipes(equipeElim);
+		
+		System.out.println(tournoi.getEquipes().get(0).getNom());
+		System.out.println(tournoi.getEquipes().get(1).getNom());
 	}
 
 	

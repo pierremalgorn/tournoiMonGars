@@ -7,6 +7,30 @@ import java.util.Random;
 public abstract class ATournoi {
 
 	private String nom;
+	
+	public String getNom() {
+		return nom;
+	}
+
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+
+	public int getTpsMatchEnM() {
+		return tpsMatchEnM;
+	}
+
+
+
+	public void setTpsMatchEnM(int tpsMatchEnM) {
+		this.tpsMatchEnM = tpsMatchEnM;
+	}
+
+
 	private int tpsMatchEnM;
 	private int nbEquipes;
 	private List<Equipe> equipes;
