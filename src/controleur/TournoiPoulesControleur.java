@@ -35,7 +35,6 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		}
 		else{
 			((TournoiPoules) tournoi).setNbTours(nombreTours + 1);
-			System.out.println(((TournoiPoules) tournoi).getNbTours());
 			tournoi.setTournoiFini(0); //1 : match terminé
 		}
 		
@@ -263,6 +262,9 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 		equipes.addAll(tournoi.getEquipes());
 		List<Poule> poules = new ArrayList<Poule>();
 		List<Integer> nbPoint = new ArrayList<Integer>();
+		String[][] tableauRencontres = new String[3][4];
+		
+		
 		
 		
 		for(i=0 ; i<nbPoules ; i++){
@@ -278,26 +280,87 @@ public class TournoiPoulesControleur extends ATournoiControleur {
 			
 			
 			
-			poule = new Poule(equipesPoule, nbPoint);
+			poule = new Poule(equipesPoule, nbPoint, tableauRencontres);
 			poules.add(poule);
 			
 		}
 		
 		((TournoiPoules) tournoi).setListePoules(poules);
+		for(i=0 ; i<nbPoules ; i++){
+			tableauRencontres[0][0] = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(0).getNom();
+			tableauRencontres[1][0] = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(1).getNom();
+			tableauRencontres[2][0] = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(2).getNom();
+			((TournoiPoules) tournoi).getListePoules().get(i).setTableauRencontres(tableauRencontres);
+		}
+		
 		
 	}
 	
 	public void jouerMatch(){
-		
-		int nbPoules = ((TournoiPoules) tournoi).getListePoules().size();
-		int i;
+		List<String> equipesPresentes = new ArrayList<>();
 		List<Match> tour = new ArrayList<Match>();
+		Equipe equipe1, equipe2, equipe3, equipe4;
+		int nbPoules = ((TournoiPoules) tournoi).getListePoules().size();
+		int i, j , k, l, nbTours;
+		Random random = new Random();
+		
+		
 		
 		for(i=0 ; i<nbPoules; i++){
-			Equipe equipe1 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(0);
-			Equipe equipe2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(1);
-			Equipe equipe3 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(2);
-			Equipe equipe4 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(3);
+			for(j=0; j<4; j++){
+				equipesPresentes.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j).getNom());
+			}
+			
+			equipe1 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(0);
+			equipesPresentes.remove(0);
+			
+			String[][] tab = ((TournoiPoules) tournoi).getListePoules().get(i).getTableauRencontres();
+			
+			nbTours=1;
+			while(tab[0][nbTours] != null){
+				nbTours = nbTours+1;
+			}
+			
+			l=0;
+			for(k=1; k<nbTours; k++){
+				while(tab[0][k] != equipesPresentes.get(l)){
+					l = l+1;
+				}
+				equipesPresentes.remove(l);
+			}
+			
+			int aleatoire = random.nextInt(equipesPresentes.size());
+			equipe2 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(aleatoire);
+			tab[0][nbTours] = equipe2.getNom();
+			
+			for(j=0; j<4; j++){
+				equipesPresentes.add(((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(j).getNom());
+			}
+			
+			l = 0;
+			while(equipe1.getNom() != equipesPresentes.get(l)){
+				l = l+1;
+			}
+			equipesPresentes.remove(l);
+			
+			l = 0;
+			while(equipe2.getNom() != equipesPresentes.get(l)){
+				l = l+1;
+			}
+			equipesPresentes.remove(l);
+			
+			l=0;
+			while(equipesPresentes.get(0) != ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l).getNom()){
+				l = l+1;
+			}
+			equipe3 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l);
+			
+			l=0;
+			while(equipesPresentes.get(1) != ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l).getNom()){
+				l = l+1;
+			}
+			equipe4 = ((TournoiPoules) tournoi).getListePoules().get(i).getEquipesPoule().get(l);
+			
 			
 			tour.add(new Match(equipe1, equipe2));
 			tour.add(new Match(equipe3, equipe4));
